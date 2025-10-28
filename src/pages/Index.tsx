@@ -274,6 +274,42 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Free Access Section */}
+      <section className="py-20 px-4 bg-secondary/50">
+        <div className="container mx-auto max-w-4xl">
+          <Card className="border-2 border-accent/50 bg-card animate-fade-in">
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl md:text-4xl mb-4">
+                Quer Conhecer a Plataforma Antes?
+              </CardTitle>
+              <CardDescription className="text-lg">
+                Faça um cadastro gratuito e explore todos os cursos disponíveis no CCT
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center space-y-6">
+              <p className="text-muted-foreground">
+                Não tem certeza se o CCT é para você? Sem problemas! Crie uma conta gratuita para navegar pela plataforma, 
+                conhecer todos os cursos disponíveis e ver o que oferecemos antes de fazer sua compra.
+              </p>
+              
+              <Button 
+                variant="outline"
+                size="lg"
+                onClick={() => window.open('https://cct.ensinoplus.com.br', '_blank')}
+                className="border-2 border-primary/50 hover:bg-primary/10"
+              >
+                <CheckCircle2 className="w-5 h-5 mr-2" />
+                Acessar a Plataforma CCT
+              </Button>
+              
+              <p className="text-sm text-muted-foreground">
+                100% gratuito • Sem compromisso • Acesso imediato
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-8 px-4 bg-secondary/50 border-t border-border">
         <div className="container mx-auto max-w-6xl text-center text-sm text-muted-foreground">
