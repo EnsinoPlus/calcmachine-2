@@ -42,6 +42,12 @@ const Index = () => {
     return today >= lote.availableFrom && today <= lote.availableUntil;
   };
 
+  const fallbackUrl = "https://pay.hotmart.com/I68113150G?off=o86dfq8b";
+  const getActiveLoteUrlOrFallback = () => {
+    const availableLote = lotes.find((lote) => isLoteAvailable(lote));
+    return availableLote ? availableLote.url : fallbackUrl;
+  };
+
   const benefits = [
     "Acesso completo ao CCT por 12 meses",
     "Todo o conteúdo liberado imediatamente",
@@ -89,10 +95,7 @@ const Index = () => {
                 variant="hero" 
                 size="xl"
                 onClick={() => {
-                  const availableLote = lotes.find(lote => isLoteAvailable(lote));
-                  if (availableLote) {
-                    window.location.href = availableLote.url;
-                  }
+                  window.location.href = getActiveLoteUrlOrFallback();
                 }}
                 className="w-full sm:w-auto"
               >
@@ -136,11 +139,12 @@ const Index = () => {
                 )}
                 
                 <CardHeader className="text-center space-y-2">
-                  {index !== 0 && (
-                    <Badge variant="outline" className="w-fit mx-auto">
-                      {lote.badge}
-                    </Badge>
-                  )}
+                  <Badge 
+                    variant="outline" 
+                    className={`w-fit mx-auto ${index === 0 ? 'invisible' : ''}`}
+                  >
+                    {lote.badge}
+                  </Badge>
                   <CardTitle className="text-2xl">Lote {lote.number}</CardTitle>
                 </CardHeader>
                 
@@ -297,10 +301,7 @@ const Index = () => {
             variant="hero"
             size="xl"
             onClick={() => {
-              const availableLote = lotes.find(lote => isLoteAvailable(lote));
-              if (availableLote) {
-                window.location.href = availableLote.url;
-              }
+              window.location.href = getActiveLoteUrlOrFallback();
             }}
             className="animate-glow-pulse"
           >
