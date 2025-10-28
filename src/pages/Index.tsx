@@ -4,28 +4,43 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Clock, Zap, AlertCircle } from "lucide-react";
 
 const Index = () => {
-  const checkoutUrl = "https://cct.ensinoplus.com.br"; // Replace with actual checkout URL
-
+  const normalPrice = "997";
+  
+  // Define availability dates for each lote
   const lotes = [
     {
       number: "1 a 10",
       price: "297",
+      installments: "30,72",
       badge: "MELHOR OFERTA",
-      available: true,
+      url: "https://pay.hotmart.com/I68113150G?off=209qgak1",
+      availableFrom: new Date("2025-01-01"), // Adjust these dates as needed
+      availableUntil: new Date("2025-01-10"),
     },
     {
       number: "11 a 20",
       price: "397",
+      installments: "41,06",
       badge: "POPULAR",
-      available: true,
+      url: "https://pay.hotmart.com/I68113150G?off=d07969bi",
+      availableFrom: new Date("2025-01-11"),
+      availableUntil: new Date("2025-01-20"),
     },
     {
       number: "21 a 30",
       price: "497",
+      installments: "51,40",
       badge: "ÚLTIMAS VAGAS",
-      available: true,
+      url: "https://pay.hotmart.com/I68113150G?off=tq64eysr",
+      availableFrom: new Date("2025-01-21"),
+      availableUntil: new Date("2025-01-31"),
     },
   ];
+
+  const today = new Date();
+  const isLoteAvailable = (lote: typeof lotes[0]) => {
+    return today >= lote.availableFrom && today <= lote.availableUntil;
+  };
 
   const benefits = [
     "Acesso completo ao CCT por 12 meses",
@@ -60,11 +75,25 @@ const Index = () => {
               Garanta seu acesso anual ao <span className="text-primary font-bold">CCT</span> com preços imperdíveis!
             </p>
             
+            <div className="pt-4">
+              <p className="text-lg text-muted-foreground">
+                Valor normal: <span className="line-through">R$ {normalPrice}</span>
+              </p>
+              <p className="text-2xl font-bold text-destructive">
+                Economize até R$ {Number(normalPrice) - 297}!
+              </p>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
               <Button 
                 variant="hero" 
                 size="xl"
-                onClick={() => window.location.href = checkoutUrl}
+                onClick={() => {
+                  const availableLote = lotes.find(lote => isLoteAvailable(lote));
+                  if (availableLote) {
+                    window.location.href = availableLote.url;
+                  }
+                }}
                 className="w-full sm:w-auto"
               >
                 <Zap className="w-6 h-6 mr-2" />
@@ -118,23 +147,29 @@ const Index = () => {
                 <CardContent className="text-center space-y-6">
                   <div>
                     <div className="flex items-center justify-center gap-2">
+                      <span className="text-2xl text-muted-foreground line-through">R$ {normalPrice}</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 mt-2">
                       <span className="text-2xl text-muted-foreground">R$</span>
                       <span className="text-6xl font-bold text-primary">{lote.price}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-2">por 12 meses</p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      ou 12x de R$ {lote.installments}
+                    </p>
                   </div>
                   
                   <Button 
                     variant="hero"
                     className="w-full"
-                    onClick={() => window.location.href = checkoutUrl}
+                    onClick={() => window.location.href = lote.url}
+                    disabled={!isLoteAvailable(lote)}
                   >
-                    Garantir Minha Vaga
+                    {isLoteAvailable(lote) ? "Garantir Minha Vaga" : "Em Breve"}
                   </Button>
                   
                   <div className="flex items-center justify-center text-sm text-muted-foreground">
                     <AlertCircle className="w-4 h-4 mr-2" />
-                    {lote.available ? "Vagas limitadas" : "Esgotado"}
+                    {isLoteAvailable(lote) ? "Disponível agora" : `Disponível em ${lote.availableFrom.toLocaleDateString('pt-BR')}`}
                   </div>
                 </CardContent>
               </Card>
@@ -261,7 +296,12 @@ const Index = () => {
           <Button 
             variant="hero"
             size="xl"
-            onClick={() => window.location.href = checkoutUrl}
+            onClick={() => {
+              const availableLote = lotes.find(lote => isLoteAvailable(lote));
+              if (availableLote) {
+                window.location.href = availableLote.url;
+              }
+            }}
             className="animate-glow-pulse"
           >
             <Zap className="w-6 h-6 mr-2" />
