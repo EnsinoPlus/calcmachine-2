@@ -101,7 +101,7 @@ const Index = () => {
                 variant="hero" 
                 size="xl"
                 onClick={() => {
-                  window.location.href = getActiveLoteUrlOrFallback();
+                  window.open(getActiveLoteUrlOrFallback(), '_blank');
                 }}
                 className="w-full sm:w-auto"
               >
@@ -174,7 +174,7 @@ const Index = () => {
                   <Button 
                     variant="hero"
                     className="w-full"
-                    onClick={() => window.location.href = lote.url}
+                    onClick={() => window.open(lote.url, '_blank')}
                     disabled={getLoteStatus(lote) !== 'active'}
                   >
                     {getLoteStatus(lote) === 'active' ? 'Garantir Minha Vaga' : getLoteStatus(lote) === 'upcoming' ? 'Em Breve' : 'Esgotado'}
@@ -314,7 +314,7 @@ const Index = () => {
             variant="hero"
             size="xl"
             onClick={() => {
-              window.location.href = getActiveLoteUrlOrFallback();
+              window.open(getActiveLoteUrlOrFallback(), '_blank');
             }}
             className="animate-glow-pulse"
           >
