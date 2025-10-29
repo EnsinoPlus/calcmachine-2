@@ -14,8 +14,8 @@ const Index = () => {
       installments: "30,72",
       badge: "MELHOR OFERTA",
       url: "https://pay.hotmart.com/I68113150G?off=209qgak1",
-      availableFrom: new Date("2025-01-01"), // Adjust these dates as needed
-      availableUntil: new Date("2025-01-10"),
+      availableFrom: new Date(2025, 10, 1),
+      availableUntil: new Date(2025, 10, 10),
     },
     {
       number: "11 a 20",
@@ -23,8 +23,8 @@ const Index = () => {
       installments: "41,06",
       badge: "POPULAR",
       url: "https://pay.hotmart.com/I68113150G?off=d07969bi",
-      availableFrom: new Date("2025-01-11"),
-      availableUntil: new Date("2025-01-20"),
+      availableFrom: new Date(2025, 10, 11),
+      availableUntil: new Date(2025, 10, 20),
     },
     {
       number: "21 a 30",
@@ -32,14 +32,20 @@ const Index = () => {
       installments: "51,40",
       badge: "ÚLTIMAS VAGAS",
       url: "https://pay.hotmart.com/I68113150G?off=tq64eysr",
-      availableFrom: new Date("2025-01-21"),
-      availableUntil: new Date("2025-01-31"),
+      availableFrom: new Date(2025, 10, 21),
+      availableUntil: new Date(2025, 10, 30),
     },
   ];
 
   const today = new Date();
   const isLoteAvailable = (lote: typeof lotes[0]) => {
     return today >= lote.availableFrom && today <= lote.availableUntil;
+  };
+
+  const getLoteStatus = (lote: typeof lotes[0]) => {
+    if (today < lote.availableFrom) return "upcoming" as const;
+    if (today > lote.availableUntil) return "ended" as const;
+    return "active" as const;
   };
 
   const fallbackUrl = "https://pay.hotmart.com/I68113150G?off=o86dfq8b";
@@ -90,7 +96,7 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <div className="flex flex-col gap-4 justify-center items-center pt-4">
               <Button 
                 variant="hero" 
                 size="xl"
@@ -102,9 +108,12 @@ const Index = () => {
                 <Zap className="w-6 h-6 mr-2" />
                 Assinar Agora
               </Button>
-              <p className="text-sm text-muted-foreground flex items-center">
+              <p className="text-sm text-muted-foreground flex items-center md:mt-2">
                 <CheckCircle2 className="w-4 h-4 mr-2 text-primary" />
                 Acesso imediato após o pagamento
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Risco zero: garantia Hotmart de 7 dias. Se não gostar, reembolso sem justificativa.
               </p>
             </div>
           </div>
@@ -166,14 +175,18 @@ const Index = () => {
                     variant="hero"
                     className="w-full"
                     onClick={() => window.location.href = lote.url}
-                    disabled={!isLoteAvailable(lote)}
+                    disabled={getLoteStatus(lote) !== 'active'}
                   >
-                    {isLoteAvailable(lote) ? "Garantir Minha Vaga" : "Em Breve"}
+                    {getLoteStatus(lote) === 'active' ? 'Garantir Minha Vaga' : getLoteStatus(lote) === 'upcoming' ? 'Em Breve' : 'Esgotado'}
                   </Button>
                   
                   <div className="flex items-center justify-center text-sm text-muted-foreground">
                     <AlertCircle className="w-4 h-4 mr-2" />
-                    {isLoteAvailable(lote) ? "Disponível agora" : `Disponível em ${lote.availableFrom.toLocaleDateString('pt-BR')}`}
+                    {getLoteStatus(lote) === 'active'
+                      ? 'Disponível agora'
+                      : getLoteStatus(lote) === 'upcoming'
+                        ? `Disponível em ${lote.availableFrom.toLocaleDateString('pt-BR')}`
+                        : `Encerrado em ${lote.availableUntil.toLocaleDateString('pt-BR')}`}
                   </div>
                 </CardContent>
               </Card>
@@ -311,6 +324,9 @@ const Index = () => {
           
           <p className="text-sm text-muted-foreground mt-6">
             Acesso liberado imediatamente após a confirmação do pagamento
+          </p>
+          <p className="text-sm text-muted-foreground mt-2">
+            Risco zero: garantia Hotmart de 7 dias. Se não gostar, reembolso sem justificativa.
           </p>
         </div>
       </section>
