@@ -170,6 +170,10 @@ const Index = () => {
                       ou 12x de R$ {lote.installments}
                     </p>
                   </div>
+                  <p className="text-sm text-destructive font-semibold flex items-center justify-center gap-2">
+                    <AlertCircle className="w-4 h-4" />
+                    Apenas 100 vagas disponíveis no total.
+                  </p>
                   
                   <Button 
                     variant="hero"
@@ -282,7 +286,7 @@ const Index = () => {
                   <div>
                     <h3 className="font-bold text-lg mb-2">Lotes Limitados</h3>
                     <p className="text-muted-foreground">
-                      Apenas 30 vagas disponíveis no total. Quando um lote esgotar, o próximo lote terá o preço mais alto. Garanta sua vaga agora!
+                      Apenas 100 vagas disponíveis no total. Quando um lote esgotar, o próximo lote terá o preço mais alto. Garanta sua vaga agora!
                     </p>
                   </div>
                 </div>
