@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Clock, Zap, AlertCircle } from "lucide-react";
+import { CheckCircle2, Clock, Zap, AlertCircle, MessageCircle } from "lucide-react";
 
 const Index = () => {
   const normalPrice = "997";
@@ -377,6 +377,17 @@ const Index = () => {
           <p>© 2025 CCT Ensino Plus. Todos os direitos reservados.</p>
         </div>
       </footer>
+      {/* WhatsApp Support Floating Button */}
+      <a
+        href="https://wa.me/5511972912275?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20sobre%20o%20CCT."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-4 py-3 rounded-full shadow-xl bg-green-500 text-white hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+        aria-label="Falar com suporte pelo WhatsApp"
+      >
+        <MessageCircle className="w-5 h-5" />
+        <span className="hidden sm:inline">Suporte</span>
+      </a>
     </main>
   );
 };
