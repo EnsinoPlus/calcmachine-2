@@ -286,7 +286,7 @@ const Index = () => {
                   <div>
                     <h3 className="font-bold text-lg mb-2">Lotes Limitados</h3>
                     <p className="text-muted-foreground">
-                      Apenas 100 vagas disponíveis no total. Quando um lote esgotar, o próximo lote terá o preço mais alto. Garanta sua vaga agora!
+                      Apenas 100 vagas disponíveis no total em cada lote. Quando um lote esgotar, o próximo lote terá o preço mais alto. Garanta sua vaga agora!
                     </p>
                   </div>
                 </div>
