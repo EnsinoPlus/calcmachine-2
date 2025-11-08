@@ -5,7 +5,7 @@ const GA_MEASUREMENT_ID = "G-TDTCKYGQ52";
 const ADS_CONVERSION_ID = "AW-16548262654";
 
 type GtagFunction = (
-  command: "config",
+  command: "config" | "event",
   targetId: string,
   config?: Record<string, unknown>
 ) => void;
@@ -31,6 +31,12 @@ const usePageTracking = () => {
     window.gtag("config", ADS_CONVERSION_ID, {
       page_path: location.pathname,
     });
+
+    if (location.pathname === "/") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-16548262654/bv8zCKuho7wbEP7l6dI9",
+      });
+    }
   }, [location.pathname]);
 };
 
