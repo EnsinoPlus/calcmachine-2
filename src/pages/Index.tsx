@@ -15,7 +15,7 @@ const Index = () => {
       badge: "MELHOR OFERTA",
       url: "https://pay.hotmart.com/I68113150G?off=209qgak1",
       availableFrom: new Date(2025, 10, 1),
-      availableUntil: new Date(2025, 10, 10),
+      availableUntil: new Date(2025, 10, 10, 23, 59, 59),
     },
     {
       number: "11 a 20",
@@ -24,7 +24,7 @@ const Index = () => {
       badge: "POPULAR",
       url: "https://pay.hotmart.com/I68113150G?off=d07969bi",
       availableFrom: new Date(2025, 10, 11),
-      availableUntil: new Date(2025, 10, 20),
+      availableUntil: new Date(2025, 10, 20, 23, 59, 59),
     },
     {
       number: "21 a 30",
@@ -33,7 +33,7 @@ const Index = () => {
       badge: "ÚLTIMAS VAGAS",
       url: "https://pay.hotmart.com/I68113150G?off=tq64eysr",
       availableFrom: new Date(2025, 10, 21),
-      availableUntil: new Date(2025, 10, 30),
+      availableUntil: new Date(2025, 10, 30, 23, 59, 59),
     },
   ];
 
