@@ -1,65 +1,35 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Clock, Zap, AlertCircle, MessageCircle } from "lucide-react";
+import { CheckCircle2, Zap, AlertTriangle, MessageCircle, Cloud, Cpu, FileText, Users } from "lucide-react";
 
 const Index = () => {
-  const normalPrice = "997";
-  
-  // Define availability dates for each lote
-  const lotes = [
+  const features = [
     {
-      number: "1 a 10",
-      price: "297",
-      installments: "30,72",
-      badge: "MELHOR OFERTA",
-      url: "https://pay.hotmart.com/I68113150G?off=209qgak1",
-      availableFrom: new Date(2025, 10, 1),
-      availableUntil: new Date(2025, 10, 10, 23, 59, 59),
+      icon: <Zap className="w-8 h-8 text-primary" />,
+      title: "100% Online",
+      description: "Adeus instalações complexas. Funciona direto no navegador."
     },
     {
-      number: "11 a 20",
-      price: "397",
-      installments: "41,06",
-      badge: "POPULAR",
-      url: "https://pay.hotmart.com/I68113150G?off=d07969bi",
-      availableFrom: new Date(2025, 10, 11),
-      availableUntil: new Date(2025, 10, 20, 23, 59, 59),
+      icon: <Users className="w-8 h-8 text-primary" />,
+      title: "Cadastro Gratuito",
+      description: "Ao se cadastrar, você ganha 50 pontos para testar o sistema."
     },
     {
-      number: "21 a 30",
-      price: "497",
-      installments: "51,40",
-      badge: "ÚLTIMAS VAGAS",
-      url: "https://pay.hotmart.com/I68113150G?off=tq64eysr",
-      availableFrom: new Date(2025, 10, 21),
-      availableUntil: new Date(2025, 10, 30, 23, 59, 59),
+      icon: <Cpu className="w-8 h-8 text-primary" />,
+      title: "Inteligência Artificial",
+      description: "Cole sua sentença (até 50.000 caracteres) ou preencha o formulário para a IA estruturar o cálculo."
     },
-  ];
-
-  const today = new Date();
-  const isLoteAvailable = (lote: typeof lotes[0]) => {
-    return today >= lote.availableFrom && today <= lote.availableUntil;
-  };
-
-  const getLoteStatus = (lote: typeof lotes[0]) => {
-    if (today < lote.availableFrom) return "upcoming" as const;
-    if (today > lote.availableUntil) return "ended" as const;
-    return "active" as const;
-  };
-
-  const fallbackUrl = "https://pay.hotmart.com/I68113150G?off=o86dfq8b";
-  const getActiveLoteUrlOrFallback = () => {
-    const availableLote = lotes.find((lote) => isLoteAvailable(lote));
-    return availableLote ? availableLote.url : fallbackUrl;
-  };
-
-  const benefits = [
-    "Acesso completo ao CCT por 12 meses",
-    "Todo o conteúdo liberado imediatamente",
-    "Suporte dedicado durante todo o período",
-    "Atualizações e novos conteúdos inclusos",
-    "Certificado de conclusão",
+    {
+      icon: <FileText className="w-8 h-8 text-primary" />,
+      title: "Exportação PJE Calc",
+      description: "O sistema gera o arquivo .pjc pronto para ser importado no seu software."
+    },
+    {
+      icon: <Cloud className="w-8 h-8 text-primary" />,
+      title: "Backup na Nuvem",
+      description: "Seus cálculos ficam salvos e seguros na sua conta, mesmo que seu PJE Calc local tenha problemas."
+    }
   ];
 
   return (
@@ -68,318 +38,167 @@ const Index = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/10 py-20 px-4 md:py-32">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(45_100%_51%/0.1),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(0_84%_55%/0.1),transparent_50%)]" />
-        
+
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center space-y-6 animate-fade-in">
-            <Badge variant="destructive" className="text-lg px-6 py-2 animate-glow-pulse">
-              <Clock className="w-5 h-5 mr-2 inline" />
-              Oferta por Tempo Limitado
-            </Badge>
-            
+            <Button
+              variant="destructive"
+              size="lg"
+              onClick={() => {
+                window.open('https://login.ensinoplus.com.br/register', '_blank');
+              }}
+              className="text-2xl px-10 py-4 animate-glow-pulse text-xl sm:text-2xl h-auto min-h-[3.5rem]"
+            >
+              <Users className="w-5 h-5 mr-2 inline" />
+              Criar Conta Gratuita
+            </Button>
+
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              <span className="block text-foreground">Black November</span>
+              <span className="block text-foreground">O CalcMachine</span>
               <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-scale-in">
-                2025
+                evoluiu!
               </span>
             </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Garanta seu acesso anual ao <span className="text-primary font-bold">CCT</span> com preços imperdíveis!
-            </p>
-            
-            <div className="pt-4">
-              <p className="text-lg text-muted-foreground">
-                Valor normal: <span className="line-through">R$ {normalPrice}</span>
+
+            <div className="bg-gradient-to-r from-primary/5 to-primary/10 border-l-4 border-primary text-foreground p-5 rounded-lg max-w-2xl mx-auto mb-8 shadow-sm">
+              <p className="text-lg md:text-xl font-medium">
+                <span className="font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Teste Grátis:</span> Ganhe 50 créditos ao se cadastrar agora mesmo!
               </p>
-              <p className="text-2xl font-bold text-destructive">
-                Economize até R$ {Number(normalPrice) - 297}!
+              <p className="text-sm mt-2 text-muted-foreground">
+                Experimente todas as funcionalidades sem compromisso
               </p>
             </div>
-            
+
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+              Agora você pode automatizar seus cálculos trabalhistas no PJE Calc de forma <span className="text-primary font-bold">100% online</span>, sem precisar instalar nada no seu computador.
+            </p>
+
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Neste vídeo, apresento a nova versão web do CalcMachine. Basta fazer login, usar a Inteligência Artificial para interpretar sua sentença ou dados, e o sistema gera automaticamente o arquivo PJC para importação.
+            </p>
+
+            <div className="my-8 flex justify-center">
+              <div className="relative w-full max-w-4xl aspect-video">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/QLLsiGaW_S4?si=Xn16ava1JZ818ey9"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="rounded-lg shadow-lg"
+                ></iframe>
+              </div>
+            </div>
+
             <div className="flex flex-col gap-4 justify-center items-center pt-4">
-              <Button 
-                variant="hero" 
+              <Button
+                variant="hero"
                 size="xl"
                 onClick={() => {
-                  window.open(getActiveLoteUrlOrFallback(), '_blank');
+                  window.open('https://calcmachine.ensinoplus.com.br', '_blank');
                 }}
                 className="w-full sm:w-auto"
               >
                 <Zap className="w-6 h-6 mr-2" />
-                Assinar Agora
+                Acesse o CalcMachine
               </Button>
-              <p className="text-sm text-muted-foreground flex items-center md:mt-2">
-                <CheckCircle2 className="w-4 h-4 mr-2 text-primary" />
-                Acesso imediato após o pagamento
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Risco zero: garantia Hotmart de 7 dias. Se não gostar, reembolso sem justificativa.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Lotes Section */}
+      {/* Features Section */}
       <section className="py-20 px-4 bg-secondary/30">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Escolha Seu Lote
+              O Que Você Vai Ver Nesta Plataforma
             </h2>
             <p className="text-lg text-muted-foreground">
-              Quanto mais rápido você decidir, mais você economiza
+              Descubra as novidades da versão web
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {lotes.map((lote, index) => (
-              <Card 
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <Card
                 key={index}
-                className="relative border-2 border-border hover:border-primary transition-all duration-300 hover:scale-105 bg-card shadow-[0_10px_40px_hsl(0_0%_0%/0.5)] animate-fade-in"
+                className="border-2 border-border hover:border-primary transition-all duration-300 hover:scale-105 bg-card shadow-[0_10px_40px_hsl(0_0%_0%/0.5)] animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {index === 0 && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge variant="destructive" className="text-sm px-4 py-1 animate-glow-pulse">
-                      {lote.badge}
-                    </Badge>
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    {feature.icon}
                   </div>
-                )}
-                
-                <CardHeader className="text-center space-y-2">
-                  <Badge 
-                    variant="outline" 
-                    className={`w-fit mx-auto ${index === 0 ? 'invisible' : ''}`}
-                  >
-                    {lote.badge}
-                  </Badge>
-                  <CardTitle className="text-2xl">Lote {lote.number}</CardTitle>
+                  <CardTitle className="text-xl">{feature.title}</CardTitle>
                 </CardHeader>
-                
-                <CardContent className="text-center space-y-6">
-                  <div>
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="text-2xl text-muted-foreground line-through">R$ {normalPrice}</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2 mt-2">
-                      <span className="text-2xl text-muted-foreground">R$</span>
-                      <span className="text-6xl font-bold text-primary">{lote.price}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      ou 12x de R$ {lote.installments}
-                    </p>
-                  </div>
-                  <p className="text-sm text-destructive font-semibold flex items-center justify-center gap-2">
-                    <AlertCircle className="w-4 h-4" />
-                    Apenas 100 vagas disponíveis no total.
-                  </p>
-                  
-                  <Button 
-                    variant="hero"
-                    className="w-full"
-                    onClick={() => window.open(lote.url, '_blank')}
-                    disabled={getLoteStatus(lote) !== 'active'}
-                  >
-                    {getLoteStatus(lote) === 'active' ? 'Garantir Minha Vaga' : getLoteStatus(lote) === 'upcoming' ? 'Em Breve' : 'Esgotado'}
-                  </Button>
-                  
-                  <div className="flex items-center justify-center text-sm text-muted-foreground">
-                    <AlertCircle className="w-4 h-4 mr-2" />
-                    {getLoteStatus(lote) === 'active'
-                      ? 'Disponível agora'
-                      : getLoteStatus(lote) === 'upcoming'
-                        ? `Disponível em ${lote.availableFrom.toLocaleDateString('pt-BR')}`
-                        : `Encerrado em ${lote.availableUntil.toLocaleDateString('pt-BR')}`}
-                  </div>
+                <CardContent className="text-center">
+                  <p className="text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          <div className="bg-destructive/10 border border-destructive/50 rounded-lg p-6 text-center animate-fade-in">
-            <p className="text-lg font-medium text-destructive-foreground flex items-center justify-center gap-2">
-              <AlertCircle className="w-5 h-5" />
-              Os lotes são limitados e o preço aumenta a cada lote
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Beta Warning Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              O Que Está Incluído
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Tudo o que você precisa para ter sucesso
-            </p>
-          </div>
-
-          <div className="grid gap-4 animate-fade-in">
-            {benefits.map((benefit, index) => (
-              <Card 
-                key={index}
-                className="border-2 border-border hover:border-primary transition-colors duration-300"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                  </div>
-                  <p className="text-lg font-medium">{benefit}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Important Info Section */}
-      <section className="py-20 px-4 bg-secondary/30">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="border-2 border-primary/50 bg-card shadow-[0_0_40px_hsl(45_100%_51%/0.2)] animate-fade-in">
+          <Card className="border-2 border-destructive/50 bg-destructive/5 shadow-[0_0_40px_hsl(0_84%_55%/0.2)] animate-fade-in">
             <CardHeader>
-              <CardTitle className="text-3xl text-center flex items-center justify-center gap-2">
-                <AlertCircle className="w-8 h-8 text-primary" />
-                Informações Importantes
+              <CardTitle className="text-3xl text-center flex items-center justify-center gap-2 text-destructive">
+                <AlertTriangle className="w-8 h-8" />
+                Atenção (Versão Beta)
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="text-primary font-bold">1</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-2">Oferta Válida no Plano Anual</h3>
-                    <p className="text-muted-foreground">
-                      Esta promoção especial da Black November é exclusiva para o plano anual de 12 meses.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="text-primary font-bold">2</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-2">Para Assinantes Atuais</h3>
-                    <p className="text-muted-foreground">
-                      Se você já é assinante, precisará cancelar sua assinatura atual na Hotmart e realizar uma nova assinatura para aproveitar os preços da Black November 2025.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="text-primary font-bold">3</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-2">Lotes Limitados</h3>
-                    <p className="text-muted-foreground">
-                      Apenas 100 vagas disponíveis no total em cada lote. Quando um lote esgotar, o próximo lote terá o preço mais alto. Garanta sua vaga agora!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-background via-background to-primary/10 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(45_100%_51%/0.15),transparent_70%)]" />
-        
-        <div className="container mx-auto max-w-4xl text-center relative z-10 animate-fade-in">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Não Perca Esta Oportunidade
-          </h2>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-            O preço aumenta a cada lote vendido
-          </p>
-          
-          <p className="text-lg text-destructive font-bold mb-8 flex items-center justify-center gap-2">
-            <Clock className="w-5 h-5" />
-            Esta oferta é exclusiva da Black November 2025
-          </p>
-          
-          <Button 
-            variant="hero"
-            size="xl"
-            onClick={() => {
-              window.open(getActiveLoteUrlOrFallback(), '_blank');
-            }}
-            className="animate-glow-pulse"
-          >
-            <Zap className="w-6 h-6 mr-2" />
-            Garantir Minha Vaga Agora
-          </Button>
-          
-          <p className="text-sm text-muted-foreground mt-6">
-            Acesso liberado imediatamente após a confirmação do pagamento
-          </p>
-          <p className="text-sm text-muted-foreground mt-2">
-            Risco zero: garantia Hotmart de 7 dias. Se não gostar, reembolso sem justificativa.
-          </p>
-        </div>
-      </section>
-
-      {/* Free Access Section */}
-      <section className="py-20 px-4 bg-secondary/50">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="border-2 border-accent/50 bg-card animate-fade-in">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl md:text-4xl mb-4">
-                Quer Conhecer a Plataforma Antes?
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Faça um cadastro gratuito e explore todos os cursos disponíveis no CCT
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-center space-y-6">
-              <p className="text-muted-foreground">
-                Não tem certeza se o CCT é para você? Sem problemas! Crie uma conta gratuita para navegar pela plataforma, 
-                conhecer todos os cursos disponíveis e ver o que oferecemos antes de fazer sua compra.
-              </p>
-              
-              <Button 
-                variant="outline"
-                size="lg"
-                onClick={() => window.open('https://cct.ensinoplus.com.br', '_blank')}
-                className="border-2 border-primary/50 hover:bg-primary/10"
-              >
-                <CheckCircle2 className="w-5 h-5 mr-2" />
-                Acessar a Plataforma CCT
-              </Button>
-              
-              <p className="text-sm text-muted-foreground">
-                100% gratuito • Sem compromisso • Acesso imediato
+            <CardContent className="space-y-4">
+              <p className="text-lg text-center">
+                Esta é a versão 1.0 (Beta) da ferramenta. Embora a IA facilite muito o trabalho, é fundamental que você confira todos os detalhes, verbas e reflexos antes de finalizar o cálculo, para garantir que tudo esteja conforme a sua peça ou sentença.
               </p>
             </CardContent>
           </Card>
         </div>
       </section>
+
+      {/* Feedback Section */}
+      <section className="py-20 px-4 bg-secondary/30">
+        <div className="container mx-auto max-w-4xl text-center">
+          <div className="animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Encontrou Algum Erro ou Tem Sugestões?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Deixe aqui nos comentários ou entre em contato pelo WhatsApp disponível na tela inicial do sistema.
+            </p>
+
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => window.open('https://wa.me/5511972912275?text=Olá,%20gostaria%20de%20dar%20um%20feedback%20sobre%20o%20Calc%20Machine', '_blank')}
+              className="border-2 border-primary/50 hover:bg-primary/10"
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Enviar Feedback pelo WhatsApp
+            </Button>
+          </div>
+        </div>
+      </section>
+
 
       {/* Footer */}
       <footer className="py-8 px-4 bg-secondary/50 border-t border-border">
         <div className="container mx-auto max-w-6xl text-center text-sm text-muted-foreground">
+          <p> 2025 CCT Ensino Plus. Todos os direitos reservados.</p>
           <p>© 2025 CCT Ensino Plus. Todos os direitos reservados.</p>
         </div>
       </footer>
+
       {/* WhatsApp Support Floating Button */}
       <a
-        href="https://wa.me/5511972912275?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20sobre%20o%20CCT."
+        href="https://wa.me/5511972912275?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20sobre%20o%20Calc%20Machine."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-4 py-3 rounded-full shadow-xl bg-green-500 text-white hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"

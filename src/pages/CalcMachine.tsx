@@ -69,7 +69,7 @@ const CalcMachine = () => {
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              <span className="block text-foreground">Calc Machine</span>
+              <span className="block text-foreground">CalcMachine</span>
               <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-scale-in">
                 Evoluiu!
               </span>
@@ -95,7 +95,7 @@ const CalcMachine = () => {
                 className="w-full sm:w-auto"
               >
                 <Zap className="w-6 h-6 mr-2" />
-                Acessar o Calc Machine
+                Acessar o CalcMachine
               </Button>
               <p className="text-sm text-muted-foreground flex items-center md:mt-2">
                 <CheckCircle2 className="w-4 h-4 mr-2 text-primary" />
@@ -259,7 +259,7 @@ const CalcMachine = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-lg text-center text-muted-foreground">
-                Esta é a <span className="text-primary font-bold">versão 1.0 (Beta)</span> do Calc Machine. 
+                Esta é a <span className="text-primary font-bold">versão 1.0 (Beta)</span> do CalcMachine. 
                 Embora a Inteligência Artificial facilite muito o trabalho, é <span className="font-bold">fundamental</span> que você 
                 confira todos os detalhes, verbas e reflexos antes de finalizar o cálculo.
               </p>
@@ -327,13 +327,13 @@ const CalcMachine = () => {
       {/* Footer */}
       <footer className="py-8 px-4 bg-secondary/50 border-t border-border">
         <div className="container mx-auto max-w-6xl text-center text-sm text-muted-foreground">
-          <p>© 2025 Calc Machine - Ensino Plus. Todos os direitos reservados.</p>
+          <p>© 2025 CalcMachine - Ensino Plus. Todos os direitos reservados.</p>
         </div>
       </footer>
 
       {/* WhatsApp Support Floating Button */}
       <a
-        href="https://wa.me/5511972912275?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20sobre%20o%20Calc%20Machine."
+        href="https://wa.me/5511972912275?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20sobre%20o%20CalcMachine."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-4 py-3 rounded-full shadow-xl bg-green-500 text-white hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
