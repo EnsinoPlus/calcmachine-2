@@ -1,0 +1,15 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo laranja com borda azul -->
+  <circle cx="16" cy="16" r="14" fill="#F97316" stroke="#2563EB" stroke-width="1.5"/>
+  
+  <!-- Texto CM em branco -->
+  <text x="16" y="21" 
+        font-family="Arial, sans-serif" 
+        font-weight="bold" 
+        font-size="16" 
+        text-anchor="middle" 
+        fill="#FFFFFF"
+        style="letter-spacing: 0.5px;">
+    CM
+  </text>
+</svg>
