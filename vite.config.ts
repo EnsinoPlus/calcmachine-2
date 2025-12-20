@@ -15,4 +15,23 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Configuração para garantir que os arquivos estáticos sejam servidos corretamente
+  base: "/",
+  publicDir: "public",
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          // Mantém os favicons na raiz do diretório de ativos
+          if (assetInfo.name?.match(/\.(ico|svg|png|jpg|jpeg|gif)$/)) {
+            return `[name][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+      },
+    },
+  },
 }));
