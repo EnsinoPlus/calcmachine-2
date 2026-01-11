@@ -1,39 +1,333 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TDTCKYGQ52"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-TDTCKYGQ52');
-      gtag('config', 'AW-16548262654');
-    </script>
-    <!-- Favicon para diferentes navegadores e dispositivos -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="32x32">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/favicon-192.png" sizes="192x192">
-    <meta name="theme-color" content="#F97316">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calc Machine - Automatize Seus Cálculos Trabalhistas Online</title>
-    <meta name="description" content="O Calc Machine evoluiu! Agora 100% online, sem instalação. Use IA para interpretar sentenças e gerar arquivos PJE Calc automaticamente." />
-    <meta name="author" content="CCT Ensino Plus" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        dark: '#1e293b',
+                        light: '#f8fafc',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        .animate-glow-pulse {
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(30, 64, 175, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(30, 64, 175, 0.8); }
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out 0.3s both;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .aurora-borealis {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 20%, 
+                rgba(59, 130, 246, 0.4) 40%, 
+                rgba(96, 165, 250, 0.3) 50%, 
+                rgba(30, 64, 175, 0.4) 60%, 
+                transparent 80%
+            );
+            animation: aurora 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(30px);
+        }
+        .aurora-borealis-2 {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(-45deg, 
+                transparent 25%, 
+                rgba(96, 165, 250, 0.35) 45%, 
+                rgba(59, 130, 246, 0.25) 55%, 
+                transparent 75%
+            );
+            animation: aurora-reverse 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(40px);
+        }
+        .aurora-borealis-3 {
+            position: fixed;
+            top: -30%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(ellipse at center, 
+                rgba(30, 64, 175, 0.3) 0%, 
+                rgba(59, 130, 246, 0.2) 30%, 
+                transparent 70%
+            );
+            animation: aurora-pulse 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(50px);
+        }
+        @keyframes aurora {
+            0%, 100% { 
+                transform: translateX(-30%) translateY(-30%) rotate(0deg) scale(1);
+                opacity: 0.5;
+            }
+            25% { 
+                transform: translateX(30%) translateY(-20%) rotate(90deg) scale(1.1);
+                opacity: 0.7;
+            }
+            50% { 
+                transform: translateX(20%) translateY(30%) rotate(180deg) scale(1.2);
+                opacity: 0.9;
+            }
+            75% { 
+                transform: translateX(-20%) translateY(20%) rotate(270deg) scale(1.1);
+                opacity: 0.7;
+            }
+        }
+        @keyframes aurora-reverse {
+            0%, 100% { 
+                transform: translateX(30%) translateY(-30%) rotate(0deg) scale(1.2);
+                opacity: 0.4;
+            }
+            33% { 
+                transform: translateX(-30%) translateY(20%) rotate(-120deg) scale(1);
+                opacity: 0.6;
+            }
+            66% { 
+                transform: translateX(20%) translateY(30%) rotate(-240deg) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        @keyframes aurora-pulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.3) rotate(180deg);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-light">
+    <!-- Aurora Borealis Background Effect -->
+    <div class="aurora-borealis"></div>
+    <div class="aurora-borealis-2"></div>
+    <div class="aurora-borealis-3"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-light via-light to-primary/5 py-20 px-4 md:py-32">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(217_91%_60%/0.1),transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(217_91%_60%/0.1),transparent_50%)]"></div>
 
-    <meta property="og:title" content="Calc Machine - Automatize Seus Cálculos Trabalhistas Online" />
-    <meta property="og:description" content="O Calc Machine evoluiu! Agora 100% online, sem instalação. Use IA para interpretar sentenças e gerar arquivos PJE Calc automaticamente." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="text-center space-y-6 animate-fade-in">
+                <button
+                    onclick="window.open('https://calcmachine.ensinoplus.com.br/login', '_blank')"
+                    class="bg-primary hover:bg-primary/90 text-white text-xl px-10 py-4 rounded-lg font-semibold transition-all animate-glow-pulse min-h-[3.5rem]"
+                >
+                    <i class="fas fa-users mr-2"></i>
+                    Criar Conta Gratuita
+                </button>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                    <span class="block text-dark">O CalcMachine</span>
+                    <span class="block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-scale-in">
+                        evoluiu!
+                    </span>
+                </h1>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+                <div class="bg-gradient-to-r from-primary/5 to-primary/10 border-l-4 border-primary text-dark p-5 rounded-lg max-w-2xl mx-auto mb-8 shadow-sm">
+                    <p class="text-lg md:text-xl font-medium">
+                        <span class="font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Teste Grátis:</span> Ganhe 50 créditos ao se cadastrar agora mesmo!
+                    </p>
+                    <p class="text-sm mt-2 text-gray-600">
+                        Experimente todas as funcionalidades sem compromisso
+                    </p>
+                </div>
+
+                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+                    Agora você pode automatizar seus cálculos trabalhistas no PJE Calc de forma <span class="text-primary font-bold">100% online</span>, sem precisar instalar nada no seu computador.
+                </p>
+
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Neste vídeo, apresento a nova versão web do CalcMachine. Basta fazer login, usar a Inteligência Artificial para interpretar sua sentença ou dados, e o sistema gera automaticamente o arquivo PJC para importação.
+                </p>
+
+                <div class="my-8 flex justify-center">
+                    <div class="relative w-full max-w-4xl aspect-video">
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src="https://www.youtube.com/embed/QLLsiGaW_S4?si=Xn16ava1JZ818ey9"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            class="rounded-lg shadow-lg"
+                        ></iframe>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 justify-center items-center pt-4">
+                    <button
+                        onclick="window.open('https://calcmachine.ensinoplus.com.br', '_blank')"
+                        class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all w-full sm:w-auto"
+                    >
+                        <i class="fas fa-bolt mr-2"></i>
+                        Acesse o CalcMachine
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    O Que Você Vai Ver Nesta Plataforma
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Descubra as novidades da versão web
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:scale-105 animate-fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-bolt text-4xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">100% Online</h3>
+                    <p class="text-gray-600 text-center">Adeus instalações complexas. Funciona direto no navegador.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:scale-105 animate-fade-in" style="animation-delay: 0.1s">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-users text-4xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Cadastro Gratuito</h3>
+                    <p class="text-gray-600 text-center">Ao se cadastrar, você ganha 50 pontos para testar o sistema.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:scale-105 animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-brain text-4xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Inteligência Artificial</h3>
+                    <p class="text-gray-600 text-center">Cole sua sentença (até 50.000 caracteres) ou preencha o formulário para a IA estruturar o cálculo.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:scale-105 animate-fade-in" style="animation-delay: 0.3s">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-file-alt text-4xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Exportação PJE Calc</h3>
+                    <p class="text-gray-600 text-center">O sistema gera o arquivo .pjc pronto para ser importado no seu software.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:scale-105 animate-fade-in" style="animation-delay: 0.4s">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-cloud text-4xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Backup na Nuvem</h3>
+                    <p class="text-gray-600 text-center">Seus cálculos ficam salvos e seguros na sua conta, mesmo que seu PJE Calc local tenha problemas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beta Warning Section -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="bg-danger/10 border-2 border-danger/30 p-8 rounded-lg shadow-lg animate-fade-in">
+                <h2 class="text-3xl text-center flex items-center justify-center gap-2 text-danger mb-4">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Atenção (Versão Beta)
+                </h2>
+                <p class="text-lg text-center text-gray-700">
+                    Esta é a versão 1.0 (Beta) da ferramenta. Embora a IA facilite muito o trabalho, é fundamental que você confira todos os detalhes, verbas e reflexos antes de finalizar o cálculo, para garantir que tudo esteja conforme a sua peça ou sentença.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-4xl text-center">
+            <div class="animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    Encontrou Algum Erro ou Tem Sugestões?
+                </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Deixe aqui nos comentários ou entre em contato pelo WhatsApp disponível na tela inicial do sistema.
+                </p>
+
+                <button
+                    onclick="window.open('https://wa.me/5511972912275?text=Olá,%20gostaria%20de%20dar%20um%20feedback%20sobre%20o%20Calc%20Machine', '_blank')"
+                    class="border-2 border-primary text-primary hover:bg-primary/10 px-6 py-3 rounded-lg font-semibold transition-all"
+                >
+                    <i class="fas fa-comment-dots mr-2"></i>
+                    Enviar Feedback pelo WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-gray-100 border-t border-gray-200">
+        <div class="container mx-auto max-w-6xl text-center text-sm text-gray-600">
+            <p>© 2025 CCT Ensino Plus. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Support Floating Button -->
+    <a
+        href="https://wa.me/5511972912275?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20sobre%20o%20Calc%20Machine."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-4 py-3 rounded-full shadow-xl bg-green-500 text-white hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+        aria-label="Falar com suporte pelo WhatsApp"
+    >
+        <i class="fas fa-comment-dots"></i>
+        <span class="hidden sm:inline">Suporte</span>
+    </a>
+    </div>
+</body>
 </html>
